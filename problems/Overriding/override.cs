@@ -1,7 +1,3 @@
-// Override the Add function inside TextInput
-// in NumericInput, but ignore all char's that
-// are not digits 
-
 using System;
 
 public class TextInput
@@ -17,7 +13,6 @@ public class TextInput
     {
         return str;
     }
-
 }
 
 public class NumericInput : TextInput
