@@ -1,7 +1,0 @@
-C:\Users\James\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.exe.config
-C:\Users\James\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.exe
-C:\Users\James\source\repos\Vehicle\Vehicle\bin\Debug\Vehicle.pdb
-C:\Users\James\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.csprojResolveAssemblyReference.cache
-C:\Users\James\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.csproj.CoreCompileInputs.cache
-C:\Users\James\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.exe
-C:\Users\James\source\repos\Vehicle\Vehicle\obj\Debug\Vehicle.pdb

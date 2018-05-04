@@ -4,23 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vehicle
+namespace Life
 {
-    class GenericVehicle
+    class GenericVehicle : IVehicle
     {
-        private int _year;
-        private string _make;
-        private string _model;
-        private string _vin;
-        private int _cylinders;
-        private string _motor_size;
-        private int _wheels;
+        public bool car_parked = true;
+        public bool engine_running = false;
+        public int count = 12309;
+
+        protected int _id;
+        protected int _year;
+        protected string _make;
+        protected string _model;
+        protected string _vin;
+        protected int _cylinders;
+        protected string _motor_size;
+        protected int _wheels;
         protected bool has_windshield;
-        private int _seats;
+        protected int _seats;
         protected bool is_driveable;
         public string owner;
         public bool clean;
 
+        public int GetID() { return _id; }
         public int GetYear() { return _year; }
         public string GetMake() { return _make; }
         public string GetModel() { return _model; }
@@ -34,6 +40,7 @@ namespace Vehicle
         public string GetOwner() { return owner; }
         public bool IsItClean() { return clean; }
 
+        private void SetID(int id) => _id = id;
         public void SetYear(int y) => _year = y;
         public void SetMake(string ma) => _make = ma;
         public void SetModel(string mo) => _model = mo;
@@ -49,6 +56,7 @@ namespace Vehicle
 
         public GenericVehicle()
         {
+            this._id = count;
             this._year = 0000;
             this._make = "N/A";
             this._model = "N/A";
@@ -61,10 +69,12 @@ namespace Vehicle
             this.is_driveable = false;
             this.owner = "N/A";
             this.clean = false;
+            count += 1;
         }
 
         public GenericVehicle(int y, string ma, string mo, string v, int c, string ms, int w, bool hws, int s, bool d, string o, bool cl)
         {
+            this._id = count;
             this._year = y;
             this._make = ma;
             this._model = mo;
@@ -77,72 +87,53 @@ namespace Vehicle
             this.is_driveable = d;
             this.owner = o;
             this.clean = cl;
-
+            count += 1;
         }
 
-        public string PrintVehicleInformation()
+        public virtual string PrintVehicleInformation()
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat("Owner {9} \nVin: {11} \nVehicle: {0} {1} {2}\nMotor: {3} cylinder {4} engine\nWheels: {5}\nWindshield: {6}\nSeats Available: {7}\nDrivability: {8}\nClean: {10}",
-                _year, _make, _model, _cylinders, _motor_size, _wheels, has_windshield, _seats, is_driveable, owner, clean, _vin);
+            sb.AppendFormat("ID: {12}\nOwner: {9} \nVin: {11} \nVehicle: {0} {1} {2}\nMotor: {3} cylinder {4} engine\nWheels: {5}\nWindshield: {6}\nSeats Available: {7}\nDrivability: {8}\nClean: {10}",
+                _year, _make, _model, _cylinders, _motor_size, _wheels, has_windshield, _seats, is_driveable, owner, clean, _vin, _id);
 
             return sb.ToString();
         }
 
-        public string ReturnString(int i)
+        public void TurnOnEngine()
         {
-            String str = i.ToString();
-
-            return str;
+            engine_running = true;
+            Console.WriteLine("You turned the vehicle on, mate.\n");
         }
-    }
 
-    class Driver
-    {
-        public void Drive(GenericVehicle v)
+        public void TurnOffEngine()
         {
-            if(v.GetDrivability() == true)
+            if (Is_Parked() == false)
             {
-                Console.WriteLine("You can drive this, mate");
+                Console.WriteLine("You're crazy, that'll ruin your car, mate");
             }
             else
             {
-                Console.WriteLine("You cannot drive this, mate");
+                engine_running = false;
+                Console.WriteLine("You shut the engine off.\n");
             }
-
         }
 
-        static void Main(string[] args)
+        public void Honk()
         {
-            String br = "\n";
+            Console.WriteLine("Honk Honk\n");
+        }
 
-            // int y, string ma, string mo, string v, int c, string ms, int w, 
-            //      bool hws, int s, bool d, string o, bool cl
-
-            GenericVehicle mustang = new GenericVehicle(2000, "Ford", "Mustang", "00000000", 6, "3.8 Liter", 4, true, 4, true, "James Patterson", false);
-
-            Console.WriteLine(mustang.PrintVehicleInformation());
-
-            mustang.owner = "Jim Patterson";
-
-            // mustang._vin = "0009";
-
-            Console.WriteLine(br);
-
-            Console.WriteLine(mustang.PrintVehicleInformation());
-
-            Console.WriteLine(br);
-
-            Driver james = new Driver();
-
-            james.Drive(mustang);
-
-            Console.WriteLine("\nPress any key...");
-            Console.ReadKey();
-
+        public bool Is_Parked()
+        {
+            if (car_parked == false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
-
 }
-
