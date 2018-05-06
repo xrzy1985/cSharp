@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Life
 {
-    class GenericVehicle : IVehicle
+    class GenericVehicle : Life, IVehicle
     {
         public bool car_parked = true;
         public bool engine_running = false;
-        public int count = 12309;
 
         protected int _id;
         protected int _year;
@@ -94,37 +90,75 @@ namespace Life
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat("ID: {12}\nOwner: {9} \nVin: {11} \nVehicle: {0} {1} {2}\nMotor: {3} cylinder {4} engine\nWheels: {5}\nWindshield: {6}\nSeats Available: {7}\nDrivability: {8}\nClean: {10}",
-                _year, _make, _model, _cylinders, _motor_size, _wheels, has_windshield, _seats, is_driveable, owner, clean, _vin, _id);
+            sb.AppendFormat("ID: {12}\n" +
+                "Owner: {9}\n" +
+                "Vin: {11}\n" +
+                "Vehicle: {0} {1} {2}\n" +
+                "Motor: {3} cylinder {4} engine\n" +
+                "Wheels: {5}\n" +
+                "Windshield: {6}\n" +
+                "Seats Available: {7}\n" +
+                "Drivability: {8}\n" +
+                "Clean: {10}",
+                _year, 
+                _make, 
+                _model, 
+                _cylinders, 
+                _motor_size, 
+                _wheels, 
+                has_windshield, 
+                _seats, 
+                is_driveable, 
+                owner, 
+                clean, 
+                _vin, 
+                _id);
 
             return sb.ToString();
-        }
+        }        
 
-        public void TurnOnEngine()
+        public void TurnOnEngine(Object o, GenericVehicle v)
         {
-            engine_running = true;
-            Console.WriteLine("You turned the vehicle on, mate.\n");
-        }
-
-        public void TurnOffEngine()
-        {
-            if (Is_Parked() == false)
+            if(o.GetType() == typeof(Person))
             {
-                Console.WriteLine("You're crazy, that'll ruin your car, mate");
+                engine_running = true;
+                Console.WriteLine("You turned the vehicle on, mate.\n");
             }
             else
             {
-                engine_running = false;
-                Console.WriteLine("You shut the engine off.\n");
+                Console.WriteLine("You need to be a human to drive a car.\n");
             }
         }
 
-        public void Honk()
+        public void TurnOffEngine(Object o, GenericVehicle v)
+        {
+
+            if (o.GetType() == typeof(Person))
+            {
+                if (Is_Parked(v) == false)
+                {
+                    Console.WriteLine("You're crazy, that'll ruin your car, mate\n");
+                }
+                else
+                {
+                    engine_running = false;
+                    Console.WriteLine("You shut the engine off.\n");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You need to be a human to turn off the car.\n");
+            }
+
+            
+        }
+
+        public void Honk(GenericVehicle v)
         {
             Console.WriteLine("Honk Honk\n");
         }
 
-        public bool Is_Parked()
+        public bool Is_Parked(GenericVehicle v)
         {
             if (car_parked == false)
             {

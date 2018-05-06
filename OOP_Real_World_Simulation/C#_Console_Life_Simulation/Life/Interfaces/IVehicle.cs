@@ -8,9 +8,9 @@ namespace Life
 {
     interface IVehicle
     {
-        void TurnOnEngine();
-        void TurnOffEngine();
-        void Honk();
-        bool Is_Parked();
+        void TurnOnEngine(Object o, GenericVehicle v);
+        void TurnOffEngine(Object o, GenericVehicle v);
+        void Honk(GenericVehicle v);
+        bool Is_Parked(GenericVehicle v);
     }
 }
