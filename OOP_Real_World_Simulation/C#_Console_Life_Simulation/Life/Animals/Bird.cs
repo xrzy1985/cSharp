@@ -2,18 +2,18 @@
 
 namespace Life
 {
-    class Dog : Life, IAnimals
+    class Bird : Life, IAnimals
     {
         public string name;
         public int age;
         private int height;
         private double weight;
 
-        public Dog() { this.name = "Unknown dog"; this.age = 0; this.height = 0; this.weight = 0; }
+        public Bird() { this.name = "Unknown bird"; this.age = 0; this.height = 0; this.weight = 0; }
 
-        ~Dog() { System.Diagnostics.Trace.WriteLine("Dog's destructor is called.\n"); }
+        ~Bird() { System.Diagnostics.Trace.WriteLine("Dog's destructor is called.\n"); }
 
-        public Dog(string n, int a, int h, double w)
+        public Bird(string n, int a, int h, double w)
         {
             this.name = n;
             this.age = a;
@@ -30,11 +30,11 @@ namespace Life
         public double GetWeight() { return this.weight; }
         public void SetWeight(double d) => this.weight = d;
 
-        public override void Eat(object o, Food f)
+        public override void Eat(Object o, Food f)
         {
             Console.WriteLine(this.name + " is eating " + f.GetFood() + ".\n");
         }
 
-        public override void Bark(object o) { Console.WriteLine(this.GetName() + " says, \"ruff, woof, bark.\"\n"); }
+        public override void Chirp(object o) { Console.WriteLine(this.GetName() + " says, \"chirp chirp chirp.\"\n"); }
     }
 }

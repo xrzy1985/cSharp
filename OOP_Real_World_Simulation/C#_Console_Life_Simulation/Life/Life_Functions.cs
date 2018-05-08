@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Life
 {
@@ -13,16 +9,18 @@ namespace Life
         public virtual void SetCount(int i) => Life.count = i;
 
         // LIFE FORMS
-        public virtual void Eat(Object o, Object f) { Console.WriteLine("Does this life form eat?\n"); }
+        public virtual void Eat(Object o, Food f) { Console.WriteLine("Does this life form eat?\n"); }
+        public virtual void WakeUp(Object o) { Console.WriteLine("The life form has woken up.\n"); }
+        public virtual void GoToSleep(Object o) { Console.WriteLine("This life form has gone to sleep.\n"); }
 
-        // PERSON
+        // PERSON, and other objects since technically a Dog could get in a vehicle
         public virtual void GetInVehicle(Object o, GenericVehicle v)
         {
             if (o.GetType() == typeof(Person))
             {
                 Console.WriteLine("This will never be used\n");
             }
-            else if (o.GetType() == typeof(Life))
+            else if (o.GetType() == typeof(Life) || o.GetType() == typeof(Dog) || o.GetType() == typeof(Cat))
             {
                 Console.WriteLine("You can get in the car, but you cannot drive.\n");
             }
@@ -51,7 +49,9 @@ namespace Life
         }
         public virtual void Drive(Object o, GenericVehicle v) { Console.WriteLine("This life form cannot drive a vehicle.\n"); }
 
-        // DOG
-
+        // Animals: Dogs, Cats, Birds, and more to come
+        public virtual void Bark(object o) { Console.WriteLine("This life form cannot bark correctly.\n"); }
+        public virtual void Meow(object o) { Console.WriteLine("This life form cannot meow correctly.\n"); }
+        public virtual void Chirp(Object o) { Console.WriteLine("This life form cannot chirp corrently.\n"); }
     }
 }

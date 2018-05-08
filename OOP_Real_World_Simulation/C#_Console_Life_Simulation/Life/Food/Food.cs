@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Life
+﻿namespace Life
 {
     class Food
     {
         public string food;
+
+        public Food() { this.food = "Unknown food"; }
 
         public Food(string f)
         {
             this.food = f;
         }
 
-        public Food(){ }
+        ~Food(){ System.Diagnostics.Trace.WriteLine("Food's destructor is called.\n"); }
 
-        public string GetFood(object f)
+        public void SetFood(string f) => food = f;
+
+        public string GetFood()
         {
             return this.food;
         }

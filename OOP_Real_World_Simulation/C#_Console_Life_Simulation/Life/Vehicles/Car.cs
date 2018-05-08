@@ -35,6 +35,8 @@ namespace Life
             count += 1;
         }
 
+        ~Car() { System.Diagnostics.Trace.WriteLine("Car's destructor is called.\n"); }
+
         public Car(bool air, bool pw, string stereo, double mpg, string oil, int y, string ma, string mo, string v, int c, string ms, int w, bool hws, int s, bool d, string o, bool cl, string cn = "N/A") : base(y, ma, mo, v, c, ms, w, hws, s, d, o, cl)
         {
             this.air_conditioning = air;

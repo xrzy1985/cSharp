@@ -122,17 +122,18 @@ namespace Life
             if(o.GetType() == typeof(Person))
             {
                 engine_running = true;
-                Console.WriteLine("You turned the vehicle on, mate.\n");
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat("The engine is now firing all {0} cylinders.\n", v.GetCylinders());
+                Console.WriteLine(sb);
             }
             else
             {
-                Console.WriteLine("You need to be a human to drive a car.\n");
+                Console.WriteLine("You need to be a person to drive a car.\n");
             }
         }
 
         public void TurnOffEngine(Object o, GenericVehicle v)
         {
-
             if (o.GetType() == typeof(Person))
             {
                 if (Is_Parked(v) == false)
@@ -142,15 +143,15 @@ namespace Life
                 else
                 {
                     engine_running = false;
-                    Console.WriteLine("You shut the engine off.\n");
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendFormat("The engine has now stopped firing all {0} cylinders.\n", v.GetCylinders());
+                    Console.WriteLine(sb);
                 }
             }
             else
             {
                 Console.WriteLine("You need to be a human to turn off the car.\n");
-            }
-
-            
+            }                       
         }
 
         public void Honk(GenericVehicle v)
